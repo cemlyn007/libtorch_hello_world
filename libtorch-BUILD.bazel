@@ -1,0 +1,54 @@
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_import(
+    name = "c10",
+    hdrs = glob(["include/c10/**"]),
+    includes = ["include"],
+    shared_library = select({
+        "@platforms//os:linux": "lib/libc10.so",
+        "@platforms//os:macos": "lib/libc10.dylib",
+    }),
+)
+
+cc_import(
+    name = "torch",
+    shared_library = select({
+        "@platforms//os:linux": "lib/libtorch.so",
+        "@platforms//os:macos": "lib/libtorch.dylib",
+    }),
+    deps = [
+        ":torch_cpu",
+    ],
+)
+
+cc_library(
+    name = "torch_cpu",
+    hdrs = glob([
+        "include/torch/**",
+        "include/ATen/**",
+    ]),
+    includes = [
+        "include",
+        "include/torch/csrc/api/include",
+    ],
+    srcs = select({
+        "@platforms//os:linux": ["lib/libtorch_cpu.so"],
+        "@platforms//os:macos": ["lib/libtorch_cpu.dylib"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        ":c10",
+        ":omp",
+    ],
+    alwayslink=True,
+)
+
+cc_import(
+    name = "omp",
+    shared_library = select({
+        "@platforms//os:linux": "lib/libgomp-98b21ff3.so.1",
+        "@platforms//os:macos": "lib/libomp.dylib",
+    }),
+)

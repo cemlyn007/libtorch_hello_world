@@ -1,0 +1,2 @@
+# Bazel extensions for libtorch
+workspace(name = "libtorch_bazel")

@@ -1,19 +1,10 @@
-"""LibTorch C++ Example"""
+"""Bazel extensions for libtorch"""
 module(
-    name = "libtorch_hello_world",
-    version = "1.0",
-    compatibility_level = 1,
+    name = "libtorch_bazel",
+    version = "2.4.1",
 )
 
-bazel_dep(name = "libtorch")
+bazel_dep(name = "platforms", version = "0.0.10")
 
-# https://bazel.build/rules/lib/globals/module#archive_override
-archive_override(
-    module_name = "libtorch",
-    urls = ["https://download.pytorch.org/libtorch/cpu/libtorch-macos-arm64-2.4.1.zip"],
-    integrity = "sha256-2ackf8X8D7n/G0+4bgDXuYuQJvrAXUfYkkPhjRRg4hE=",
-    strip_prefix = "libtorch",
-    patches = [
-        "third_party/libtorch.patch",
-    ],
-)
+internal_configure = use_extension("//:internal_configure.bzl", "internal_configure_extension")
+use_repo(internal_configure, "libtorch")
