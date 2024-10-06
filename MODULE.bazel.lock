@@ -64,7 +64,7 @@
   "moduleExtensions": {
     "//:internal_configure.bzl%internal_configure_extension": {
       "general": {
-        "bzlTransitiveDigest": "u/siFBYNgwf4TzHjY8uIokjJ8bRHpKGPPy5L+zyVqx0=",
+        "bzlTransitiveDigest": "uAUAn+nt8XI4uSJ/AuAoF0Yy1dSyjLPF0MEtOc5k7Ko=",
         "usagesDigest": "RWW8oDr0p5Gr3E3Kne5fJarajixtpxn3PLKKcQ3D9QE=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -76,8 +76,8 @@
             "attributes": {
               "build_file": "@@//:libtorch-BUILD.bazel",
               "strip_prefix": "libtorch",
-              "url": "https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.1%2Bcu124.zip",
-              "integrity": "sha256-6+3DGHVt0SIpZEvySnZDThog90kb403wponxUUQPCgo="
+              "url": "https://download.pytorch.org/libtorch/cpu/libtorch-macos-arm64-2.4.1.zip",
+              "integrity": "sha256-2ackf8X8D7n/G0+4bgDXuYuQJvrAXUfYkkPhjRRg4hE="
             }
           }
         },
@@ -86,6 +86,21 @@
             "",
             "bazel_tools",
             "bazel_tools"
+          ],
+          [
+            "",
+            "local_config_platform",
+            "local_config_platform"
+          ],
+          [
+            "local_config_platform",
+            "platforms",
+            "platforms"
+          ],
+          [
+            "platforms",
+            "host_platform",
+            "platforms~host_platform~host_platform"
           ]
         ]
       }

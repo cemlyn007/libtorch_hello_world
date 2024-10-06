@@ -9,6 +9,7 @@ cc_import(
     shared_library = select({
         "@platforms//os:linux": "lib/libc10.so",
         "@platforms//os:macos": "lib/libc10.dylib",
+        "//conditions:default": "@platforms//:incompatible",
     }),
 )
 
@@ -17,6 +18,7 @@ cc_import(
     shared_library = select({
         "@platforms//os:linux": "lib/libtorch.so",
         "@platforms//os:macos": "lib/libtorch.dylib",
+        "//conditions:default": "@platforms//:incompatible",
     }),
     deps = [
         ":torch_cpu",
@@ -36,7 +38,7 @@ cc_library(
     srcs = select({
         "@platforms//os:linux": ["lib/libtorch_cpu.so"],
         "@platforms//os:macos": ["lib/libtorch_cpu.dylib"],
-        "//conditions:default": [],
+        "//conditions:default": ["@platforms//:incompatible"],
     }),
     deps = [
         ":c10",
@@ -50,5 +52,6 @@ cc_import(
     shared_library = select({
         "@platforms//os:linux": "lib/libgomp-98b21ff3.so.1",
         "@platforms//os:macos": "lib/libomp.dylib",
+        "//conditions:default": "@platforms//:incompatible",
     }),
 )
