@@ -53,6 +53,7 @@ def _internal_configure_extension_impl(module_ctx):
         strip_prefix = "libtorch",
         url = _URLS.get(version).get(os),
         integrity = _INTEGRITIES.get(version).get(os),
+        # patches = ["libtorch.patch"],
     )
 
 internal_configure_extension = module_extension(implementation = _internal_configure_extension_impl)

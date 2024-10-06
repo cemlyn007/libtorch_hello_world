@@ -9,6 +9,6 @@ cc_binary(
         "hello_world.cc",
     ],
     deps = [
-        "@libtorch//:torch_cpu",
+        "@libtorch//:torch",
     ],
 )
